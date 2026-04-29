@@ -19,8 +19,8 @@ def book_detail(request, pk):
 def book_create(request):
     if request.method == "POST":
         title = request.POST["title"]
-        author_id = request.POST["author_id"]
-        author = get_object_or_404(Author, pk=author_id)
+        author_name = request.POST["author"]
+        author, _ = Author.objects.get_or_create(name=author_name)
 
         Book.objects.create(title=title, author=author)
 
