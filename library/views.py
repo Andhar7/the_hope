@@ -13,7 +13,7 @@ def book_list(request):
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
-    return render(request, "library/book_list.html", {"book": book})
+    return render(request, "library/book_detail.html", {"book": book})
 
 
 def book_create(request):
@@ -22,7 +22,7 @@ def book_create(request):
         author_id = request.POST["author_id"]
         author = get_object_or_404(Author, pk=author_id)
 
-        Book.objects.create(title=title, author=author, author_id=author_id)
+        Book.objects.create(title=title, author=author)
 
         return redirect("library:book_list")
 
